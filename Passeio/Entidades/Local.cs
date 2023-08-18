@@ -27,10 +27,13 @@
         {
             return null;
         }
-        public Local Editar(Guid id)
+        public void Editar(string titulo, string descricao, string localizacao, Byte imagem )
         {
-            return null;
+            Titulo = titulo;
+            Descricao = descricao;
+            Localização = localizacao;
+            Imagem = imagem;
+            DataDeAtualizacao = DateTime.Now;
         }
-        public void Deletar(Guid id) {}
     }
 }
