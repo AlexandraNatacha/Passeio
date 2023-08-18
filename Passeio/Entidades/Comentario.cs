@@ -13,8 +13,11 @@
         public string UsuarioAutor{ get; set; }
         public DateTime DataDeCriacao { get; set; }
 
-        public void CriarComentario() {}
-        public List<Comentario> ListarComentarios() { }
-        public void DeletarComentario(Guid id) { }
+        public void Criar() {}
+        public List<Comentario> Listar()
+        {
+            return null;
+        }
+        public void Deletar(Guid id) { }
     }
 }

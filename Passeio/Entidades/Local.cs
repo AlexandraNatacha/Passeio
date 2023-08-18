@@ -1,33 +1,36 @@
-﻿using System.Globalization;
-
-namespace Passeio.Entidades
+﻿namespace Passeio.Entidades
 {
     public class Local
     {
-        public Local(string titulo, string descricao, string localização, byte imagem, string usuarioCriador, List<Comentario> comentarios)
+        public Local(string titulo, string descricao, string localização, byte imagem, string usuarioCriador)
         {
             Titulo = titulo;
             Descricao = descricao;
             Localização = localização;
             Imagem = imagem;
             UsuarioCriador = usuarioCriador;
-            Comentarios = comentarios;
+            Comentarios = new List<Comentario>();
             DataDeCriacao = DateTime.Now;
         }
 
-        public Guid Id { get; set; }
-        public string Titulo { get; set; }
-        public string Descricao { get; set; }
-        public string Localização { get; set; }
-        public Byte Imagem { get; set; }
-        public string UsuarioCriador { get; set; }
-        public List<Comentario> Comentarios { get; set; }
-        public DateTime DataDeCriacao { get; set; }
-        public DateTime DataDeAtualizacao { get; set; }
+        public Guid Id { get; private set; }
+        public string Titulo { get; private set; }
+        public string Descricao { get; private set; }
+        public string Localização { get; private set; }
+        public Byte Imagem { get; private set; }
+        public string UsuarioCriador { get; private set; }
+        public List<Comentario> Comentarios { get; private set; }
+        public DateTime DataDeCriacao { get; private set; }
+        public DateTime DataDeAtualizacao { get; private set; }
 
-        public Local VisualizarLocal(Guid id){}
-        public void CriarLocal() {}
-        public Local EditarLugar(Guid id) {}
-        public void DeletarLocal(Guid id) {}
+        public Local Visualizar(Guid id)
+        {
+            return null;
+        }
+        public Local Editar(Guid id)
+        {
+            return null;
+        }
+        public void Deletar(Guid id) {}
     }
 }
