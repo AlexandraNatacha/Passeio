@@ -23,10 +23,6 @@
         public DateTime DataDeCriacao { get; private set; }
         public DateTime DataDeAtualizacao { get; private set; }
 
-        public Local Visualizar(Guid id)
-        {
-            return null;
-        }
         public void Editar(string titulo, string descricao, string localizacao, Byte imagem )
         {
             Titulo = titulo;

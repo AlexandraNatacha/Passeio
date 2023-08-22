@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Passeio.Api.Dtos.Local;
 using Passeio.Contexto;
 using Passeio.Dtos.Local;
 using Passeio.Entidades;
@@ -21,20 +22,30 @@ namespace Passeio.Controllers
         {
             var locais = _contexto.Locais.ToList();
             if(!locais.Any())
-            {
                 return NotFound(new {error = "Ainda não há locais cadastrados"});
+
+            var locaisDto = new List<ListarLocalDto>();
+            foreach(var local in locais)
+            {
+                locaisDto.Add(new ListarLocalDto
+                {
+                    Id = local.Id,
+                    Titulo = local.Titulo,
+                    Descricao = local.Descricao,
+                    Localização = local.Localização,
+                    Imagem = local.Imagem
+                });
             }
-            return Ok(locais);
+            return Ok(locaisDto);
         }
 
         [HttpGet("buscar/{id}")]
         public IActionResult Buscar(Guid id)
         {
             var lugar = _contexto.Locais.SingleOrDefault(x => x.Id == id);
-            if(lugar == null)
-            {
+            if(lugar is null)
                 return NotFound(new {erro = "Local não encontrado!" });
-            }
+
             return Ok(lugar);
         }
 
@@ -54,16 +65,13 @@ namespace Passeio.Controllers
             return Ok();
         }
 
-        //Seu eu uso apenas titulo, descrição, localização e imagem, pq nao crio localDto e uso tanto para criar como para editar?
         [HttpPut("editar/{id}")]
         public IActionResult Editar(Guid id, [FromBody] EditarLocalDto editarDto)
         {
             var localParaEditar = _contexto.Locais.SingleOrDefault(x => x.Id == id);
 
-            if(localParaEditar == null)
-            {
+            if(localParaEditar is null)
                 return NotFound(new { error = "Local não encontrado!" });
-            }
 
             localParaEditar.Editar(editarDto.Titulo, editarDto.Descricao, editarDto.Localização, editarDto.Imagem);
 
@@ -75,11 +83,9 @@ namespace Passeio.Controllers
         [HttpDelete("deletar/{id}")]
         public IActionResult Deletar(Guid id)
         {
-            var localParaDeletar = _contexto.Locais.SingleOrDefault(x => x.Id==id);
-            if( localParaDeletar == null)
-            {
+            var localParaDeletar = _contexto.Locais.SingleOrDefault(x => x.Id == id);
+            if( localParaDeletar is null)
                 return NotFound(new {error = "Local não encontrado!"});
-            }
 
             _contexto.Remove(localParaDeletar);
             _contexto.SaveChanges();
