@@ -2,11 +2,11 @@
 {
     public class Local
     {
-        public Local(string titulo, string descricao, string localização, byte imagem, string usuarioCriador)
+        public Local(string titulo, string descricao, string localizacao, byte imagem, string usuarioCriador)
         {
             Titulo = titulo;
             Descricao = descricao;
-            Localização = localização;
+            Localizacao = localizacao;
             Imagem = imagem;
             UsuarioCriador = usuarioCriador;
             Comentarios = new List<Comentario>();
@@ -16,7 +16,7 @@
         public Guid Id { get; private set; }
         public string Titulo { get; private set; }
         public string Descricao { get; private set; }
-        public string Localização { get; private set; }
+        public string Localizacao { get; private set; }
         public Byte Imagem { get; private set; }
         public string UsuarioCriador { get; private set; }
         public List<Comentario> Comentarios { get; private set; }
@@ -27,7 +27,7 @@
         {
             Titulo = titulo;
             Descricao = descricao;
-            Localização = localizacao;
+            Localizacao = localizacao;
             Imagem = imagem;
             DataDeAtualizacao = DateTime.Now;
         }

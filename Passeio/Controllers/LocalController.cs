@@ -32,7 +32,8 @@ namespace Passeio.Controllers
                     Id = local.Id,
                     Titulo = local.Titulo,
                     Descricao = local.Descricao,
-                    Localização = local.Localização,
+                    Localizacao = local.Localizacao,
+                    UsuarioCriador = local.UsuarioCriador,
                     Imagem = local.Imagem
                 });
             }
@@ -52,12 +53,12 @@ namespace Passeio.Controllers
         [HttpPost("criar")]
         public IActionResult Criar([FromBody] CriarLocalDto localDto)
         {
-            var localComLocalocalizacaoJaCadastrada = _contexto.Locais.Any(x => x.Localização.Equals(localDto.Localização));
+            var localComLocalocalizacaoJaCadastrada = _contexto.Locais.Any(x => x.Localizacao.Equals(localDto.Localizacao));
 
             if (localComLocalocalizacaoJaCadastrada)
                 return Unauthorized(new { error = "O local já está cadastrado!" });
 
-            var local = new Local(localDto.Titulo, localDto.Descricao, localDto.Localização, localDto.Imagem, localDto.UsuarioCriador);
+            var local = new Local(localDto.Titulo, localDto.Descricao, localDto.Localizacao, localDto.Imagem, localDto.UsuarioCriador);
 
             _contexto.Add(local);
             _contexto.SaveChanges();
@@ -73,7 +74,7 @@ namespace Passeio.Controllers
             if(localParaEditar is null)
                 return NotFound(new { error = "Local não encontrado!" });
 
-            localParaEditar.Editar(editarDto.Titulo, editarDto.Descricao, editarDto.Localização, editarDto.Imagem);
+            localParaEditar.Editar(editarDto.Titulo, editarDto.Descricao, editarDto.Localizacao, editarDto.Imagem);
 
             _contexto.SaveChanges();
 

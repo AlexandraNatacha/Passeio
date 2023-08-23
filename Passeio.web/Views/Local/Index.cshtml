@@ -1,1 +1,54 @@
-﻿@model List<LocalViewModel>
+﻿@using Passeio.web.Models.ViewModels;
+@model List<LocalViewModel>
+
+@{
+    ViewData["Title"] = "Lista";
+}
+
+<div class="card shadow-lg card-profile-top">
+    <div class="row card-body justify-content-between">
+        <h1 class="col-auto">Locais</h1>
+        <a class="btn btn-lg btn-primary col-auto me-3" asp-controller="Local" asp-action="Criar">Cadastrar Local</a>
+    </div>
+</div>
+
+@if (Model.Any())
+{
+    foreach (var local in Model)
+    {
+        <div class="card mt-3">
+            <div class="row card-body">
+                <div class="col-lg-2 col-md-3 col-sm-12">
+                    <h5 class="text-body">Imagem</h5>
+                    <p>@local.Imagem</p>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12">
+                    <h5 class="text-body">Título</h5>
+                    <p>@local.Titulo</p>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12">
+                    <h5 class="text-body">Descrição</h5>
+                    <p>@local.Descricao</p>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12">
+                    <h5 class="text-body">Localização</h5>
+                    <p>@local.Localizacao</p>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12">
+                    <h5 class="text-body">Autor</h5>
+                    <p>@local.UsuarioCriador</p>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="card mt-3">
+        <div class="card-body">
+            <div class="alert alert-warning m-0 text-dark">
+                Ainda não tem locais cadastrados.
+            </div>
+        </div>
+    </div>
+}

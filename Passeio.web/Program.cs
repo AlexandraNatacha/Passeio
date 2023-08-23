@@ -1,7 +1,16 @@
+using NToastNotify;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services
+    .AddControllersWithViews()
+    .AddRazorRuntimeCompilation()
+    .AddNToastNotifyToastr(new ToastrOptions()
+    {
+        ProgressBar = true,
+        PositionClass = ToastPositions.TopRight
+    });
 
 var app = builder.Build();
 
@@ -20,8 +29,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseNToastNotify();
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Local}/{action=Index}/{id?}");
 
 app.Run();

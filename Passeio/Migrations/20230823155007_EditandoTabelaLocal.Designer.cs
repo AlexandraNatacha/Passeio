@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Passeio.Contexto;
 
@@ -11,9 +12,11 @@ using Passeio.Contexto;
 namespace Passeio.Migrations
 {
     [DbContext(typeof(PasseioContexto))]
-    partial class PasseioContextoModelSnapshot : ModelSnapshot
+    [Migration("20230823155007_EditandoTabelaLocal")]
+    partial class EditandoTabelaLocal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

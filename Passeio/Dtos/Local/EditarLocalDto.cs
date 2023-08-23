@@ -11,7 +11,7 @@ namespace Passeio.Dtos.Local
         public string Descricao { get; set; }
 
         [Required(ErrorMessage = "A localização é obrigatória!")]
-        public string Localização { get; set; }
+        public string Localizacao { get; set; }
 
         [Required(ErrorMessage = "A Imagem é obrigatória")]
         public byte Imagem { get; set; }
