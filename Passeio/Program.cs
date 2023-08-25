@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Passeio.Contexto;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<PasseioContexto>();
+builder.Services.AddDbContext<PasseioContexto>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

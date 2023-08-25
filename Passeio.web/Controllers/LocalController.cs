@@ -14,7 +14,7 @@ namespace Passeio.web.Controllers
 
         public LocalController(IToastNotification toastNotification)
         {
-            passeioApi = "https://localhost:7058";
+            passeioApi = "https://passeio.api:8080";
             _toastNotification = toastNotification;
         }
         public IActionResult Index()

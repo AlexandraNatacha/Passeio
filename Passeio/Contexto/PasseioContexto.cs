@@ -6,7 +6,10 @@ namespace Passeio.Contexto
 {
     public class PasseioContexto : DbContext
     {
-        public PasseioContexto(DbContextOptions<PasseioContexto> options): base(options) {}
+        public PasseioContexto(DbContextOptions<PasseioContexto> options): base(options) 
+        {
+            this.Database.Migrate();
+        }
 
         public DbSet<Local> Locais { get; set; }
         public DbSet<Comentario> Comentarios { get; set; }
@@ -15,14 +18,6 @@ namespace Passeio.Contexto
         {
 
             base.OnModelCreating(modelBuilder);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=dbPasseio;Integrated Security=True;Connect Timeout=30";
-            optionsBuilder.UseSqlServer(connectionString);
-
-            base.OnConfiguring(optionsBuilder);
         }
     }
 }
