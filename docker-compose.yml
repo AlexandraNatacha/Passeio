@@ -6,13 +6,33 @@ services:
     build:
       context: .
       dockerfile: Passeio.web/Dockerfile
-    ports:
-      - "5000:8080"
-      - "5001:443"
+    networks: 
+      - frontend
   passeio.api:
     image: ${DOCKER_REGISTRY-}passeioapi
     build:
       context: .
       dockerfile: Passeio/Dockerfile
+    networks: 
+      - frontend
+      - backend
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
+    networks:
+      - backend
+    volumes:
+      - "/data/dbPasseio.mdf:/var/opt/mssql/data/dbPasseio.mdf"
+      - "/data/dbPasseio.ldf:/var/opt/mssql/data/dbPasseio.ldf"
 
-
+networks:
+  frontend:
+    name: frontend
+    driver: bridge
+  backend:
+    name: backend
+    driver: bridge
