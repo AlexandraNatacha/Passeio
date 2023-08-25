@@ -5,13 +5,15 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passeio.Api", "Passeio\Passeio.Api.csproj", "{683AF2A5-0A80-4E73-8D4F-FE80A2741C70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passeio.web", "Passeio.web\Passeio.web.csproj", "{7B5FF4EE-7453-4154-B385-4ECCE6451BF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passeio.web", "Passeio.web\Passeio.web.csproj", "{7B5FF4EE-7453-4154-B385-4ECCE6451BF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passeio.Domain", "Passeio.Domain\Passeio.Domain.csproj", "{4FE5FC6E-47EA-400D-9672-DFD9F9C0DEF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passeio.Domain", "Passeio.Domain\Passeio.Domain.csproj", "{4FE5FC6E-47EA-400D-9672-DFD9F9C0DEF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passeio.Infrastructure", "Passeio.Infrastructure\Passeio.Infrastructure.csproj", "{F79DD353-64C4-4EA9-9FBD-079E6CF0040F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passeio.Infrastructure", "Passeio.Infrastructure\Passeio.Infrastructure.csproj", "{F79DD353-64C4-4EA9-9FBD-079E6CF0040F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passeio.Services", "Passeio.Services\Passeio.Services.csproj", "{FBC51F29-C9BC-4896-AB22-B158DEEB23D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passeio.Services", "Passeio.Services\Passeio.Services.csproj", "{FBC51F29-C9BC-4896-AB22-B158DEEB23D0}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B65E518B-A3DC-41D2-9F06-E4667B82C3DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{FBC51F29-C9BC-4896-AB22-B158DEEB23D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBC51F29-C9BC-4896-AB22-B158DEEB23D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBC51F29-C9BC-4896-AB22-B158DEEB23D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B65E518B-A3DC-41D2-9F06-E4667B82C3DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B65E518B-A3DC-41D2-9F06-E4667B82C3DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B65E518B-A3DC-41D2-9F06-E4667B82C3DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B65E518B-A3DC-41D2-9F06-E4667B82C3DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

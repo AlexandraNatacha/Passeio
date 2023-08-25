@@ -1,0 +1,18 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0
+
+# COPY CSPROJ AND RESTORE AS DISTINCT LAYERS
+COPY ./ /source
+
+# SETA O DIRETORIO BASE PARA DOTNET RESTORE E PUBLISH
+WORKDIR /source/Passeio
+
+# RESTAURAO EXPLCITA PARA PACOTES NUGET
+RUN dotnet restore Passeio.Api.csproj
+
+# COMPILA O CODIGO PARA IMPLANTAO EM UM SISTEMA DE HOSPEDAGEM
+RUN dotnet publish Passeio.Api.csproj --no-restore -c release -o /app
+
+# SETA O DIRETORIO BASE PARA ENTRYPOINT
+WORKDIR /app
+EXPOSE 8080 443
+ENTRYPOINT dotnet Passeio.dll

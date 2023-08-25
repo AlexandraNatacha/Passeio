@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  passeio.web:
+    image: ${DOCKER_REGISTRY-}passeioweb
+    build:
+      context: .
+      dockerfile: Passeio.web/Dockerfile
+    ports:
+      - "5000:8080"
+      - "5001:443"
+  passeio.api:
+    image: ${DOCKER_REGISTRY-}passeioapi
+    build:
+      context: .
+      dockerfile: Passeio/Dockerfile
+
+

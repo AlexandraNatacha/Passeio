@@ -4,7 +4,6 @@ using NToastNotify;
 using Passeio.web.Dtos.Local;
 using Passeio.web.Models.ViewModels;
 using RestSharp;
-using static System.Net.WebRequestMethods;
 
 namespace Passeio.web.Controllers
 {
