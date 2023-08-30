@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Passeio.Entidades;
-using System.Reflection.Emit;
 
 namespace Passeio.Contexto
 {

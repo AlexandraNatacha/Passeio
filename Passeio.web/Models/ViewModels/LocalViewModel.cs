@@ -1,4 +1,6 @@
-﻿namespace Passeio.web.Models.ViewModels
+﻿using Passeio.web.Enums;
+
+namespace Passeio.web.Models.ViewModels
 {
     public class LocalViewModel
     {

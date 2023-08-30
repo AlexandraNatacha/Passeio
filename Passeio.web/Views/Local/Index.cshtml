@@ -1,4 +1,5 @@
-﻿@using Passeio.web.Models.ViewModels;
+﻿@using Passeio.web.Enums;
+@using Passeio.web.Models.ViewModels;
 @model List<LocalViewModel>
 
 @{
@@ -39,15 +40,22 @@
                     <p>@local.UsuarioCriador</p>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-12">
-                    <a class="btn dropdown-toggle" href="#"  id="dropdownMenuLink"  aria-expanded="false">
-                        <i class="bi bi-three-dots-vertical"></i>
-                    </a>
-                    <ul class="dropdown-menu" >
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOpcoes" data-bs-toggle="dropdown" aria-expanded="false">
+                            opções
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownOpcoes">
+                            <li><a class="dropdown-item" asp-controller="Local" asp-action="Editar" asp-route-localId="@local.Id"><i class="bi bi-pen"></i>Editar</a></li>
+                            <li><a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#ExcluirModal" style="cursor: pointer;"><i class="bi bi-trash"></i>Excluir</a></li>
+@*                            <li>
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ExcluirModal" style="width: 164px;">
+                                    <i class="bi bi-trash"></i>Excluir
+                                </button>
+                            </li>*@
+                        </ul>
+                    </div>
                 </div>
+                <partial name="_ConfirmacaoDeExclusao" view-data='@new ViewDataDictionary(ViewData) { {"localId", local.Id }, {"tituloDoLugar", local.Titulo} }' />
             </div>
         </div>
     }

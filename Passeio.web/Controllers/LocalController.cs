@@ -31,6 +31,8 @@ namespace Passeio.web.Controllers
 
             return View();
         }
+
+        [HttpGet]
         public IActionResult Criar() => View();
 
         [HttpPost]
@@ -56,6 +58,41 @@ namespace Passeio.web.Controllers
 
             _toastNotification.AddErrorToastMessage("Este local foi cadastrado!");
             return View(localViewModel);
+        }
+
+        //[HttpGet]
+        //public IActionResult Editar(LocalViewModel localViewModel) => View();
+
+
+        //[HttpPut]
+        //public IActionResult Editar(Guid localId)
+        //{
+        //    var client = new RestClient(passeioApi);
+        //    var rest = $"api/local/editar";
+        //    var request = new RestRequest(rest, Method.Put);
+        //    var response = client.Execute(request);
+        //    if(response.IsSuccessful)
+        //    {
+        //        //var editarViewModel = JsonConvert.DeserializeObject<EditarViewModel>(response.Content);
+        //        //return View(editarViewModel);
+        //    }
+
+        //    return View();
+        //}
+
+        public IActionResult Deletar(Guid localId)
+        {
+            var client = new RestClient(passeioApi);
+            var rest = $"api/local/deletar/{localId}";
+            var request = new RestRequest(rest, Method.Patch);
+            var response = client.Execute(request);
+            if (response.IsSuccessful)
+            {
+                _toastNotification.AddSuccessToastMessage("Local excluído!");
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

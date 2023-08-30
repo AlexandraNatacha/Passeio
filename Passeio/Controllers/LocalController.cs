@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Passeio.Api.Dtos.Local;
+using Passeio.Api.Enums;
 using Passeio.Contexto;
 using Passeio.Dtos.Local;
 using Passeio.Entidades;
@@ -20,7 +21,10 @@ namespace Passeio.Controllers
         [HttpGet("listar")]
         public IActionResult Listar()
         {
-            var locais = _contexto.Locais.ToList();
+            var locais = _contexto.Locais
+                .Where(x => x.Status == StatusDoLocal.Ativo)
+                .ToList();
+
             if(!locais.Any())
                 return NotFound(new {error = "Ainda não há locais cadastrados"});
 
@@ -34,7 +38,8 @@ namespace Passeio.Controllers
                     Descricao = local.Descricao,
                     Localizacao = local.Localizacao,
                     UsuarioCriador = local.UsuarioCriador,
-                    Imagem = local.Imagem
+                    Imagem = local.Imagem,
+                    Status = local.Status
                 });
             }
             return Ok(locaisDto);
@@ -53,10 +58,12 @@ namespace Passeio.Controllers
         [HttpPost("criar")]
         public IActionResult Criar([FromBody] CriarLocalDto localDto)
         {
-            var localComLocalocalizacaoJaCadastrada = _contexto.Locais.Any(x => x.Localizacao.Equals(localDto.Localizacao));
+            var localJaCadastrado = _contexto.Locais.SingleOrDefault(x => x.Localizacao.Equals(localDto.Localizacao));
 
-            if (localComLocalocalizacaoJaCadastrada)
+            if (localJaCadastrado is not null && localJaCadastrado!.Status != StatusDoLocal.Inativo)
+            {
                 return Unauthorized(new { error = "O local já está cadastrado!" });
+            }
 
             var local = new Local(localDto.Titulo, localDto.Descricao, localDto.Localizacao, localDto.Imagem, localDto.UsuarioCriador);
 
@@ -66,10 +73,10 @@ namespace Passeio.Controllers
             return Ok();
         }
 
-        [HttpPut("editar/{id}")]
-        public IActionResult Editar(Guid id, [FromBody] EditarLocalDto editarDto)
+        [HttpPut("editar/{localId}")]
+        public IActionResult Editar(Guid localId, [FromBody] EditarLocalDto editarDto)
         {
-            var localParaEditar = _contexto.Locais.SingleOrDefault(x => x.Id == id);
+            var localParaEditar = _contexto.Locais.SingleOrDefault(x => x.Id == localId);
 
             if(localParaEditar is null)
                 return NotFound(new { error = "Local não encontrado!" });
@@ -81,14 +88,15 @@ namespace Passeio.Controllers
             return Ok();
         }
 
-        [HttpDelete("deletar/{id}")]
-        public IActionResult Deletar(Guid id)
+        [HttpPatch("deletar/{localId}")]
+        public IActionResult Deletar(Guid localId)
         {
-            var localParaDeletar = _contexto.Locais.SingleOrDefault(x => x.Id == id);
-            if( localParaDeletar is null)
+            var local = _contexto.Locais.SingleOrDefault(x => x.Id == localId);
+            if( local is null)
                 return NotFound(new {error = "Local não encontrado!"});
 
-            _contexto.Remove(localParaDeletar);
+            local.Inativar();
+
             _contexto.SaveChanges();
 
             return Ok();

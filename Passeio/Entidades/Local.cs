@@ -1,4 +1,6 @@
-﻿namespace Passeio.Entidades
+﻿using Passeio.Api.Enums;
+
+namespace Passeio.Entidades
 {
     public class Local
     {
@@ -11,6 +13,7 @@
             UsuarioCriador = usuarioCriador;
             Comentarios = new List<Comentario>();
             DataDeCriacao = DateTime.Now;
+            Status = StatusDoLocal.Ativo;
         }
 
         public Guid Id { get; private set; }
@@ -22,6 +25,7 @@
         public List<Comentario> Comentarios { get; private set; }
         public DateTime DataDeCriacao { get; private set; }
         public DateTime DataDeAtualizacao { get; private set; }
+        public StatusDoLocal Status { get; private set; }
 
         public void Editar(string titulo, string descricao, string localizacao, Byte imagem )
         {
@@ -30,6 +34,11 @@
             Localizacao = localizacao;
             Imagem = imagem;
             DataDeAtualizacao = DateTime.Now;
+        }
+
+        public void Inativar()
+        {
+            Status = StatusDoLocal.Inativo;
         }
     }
 }
