@@ -56,29 +56,52 @@ namespace Passeio.web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            _toastNotification.AddErrorToastMessage("Este local foi cadastrado!");
+            _toastNotification.AddErrorToastMessage(response.Content);
             return View(localViewModel);
         }
 
-        //[HttpGet]
-        //public IActionResult Editar(LocalViewModel localViewModel) => View();
+        public IActionResult Editar(Guid localId)
+        {
+            var client = new RestClient(passeioApi);
+            var rest = $"api/local/buscarParaEdicao/{localId}";
+            var request = new RestRequest(rest);
+            var response = client.Execute(request);
+            if(response.IsSuccessful)
+            {
+                var editarViewModel = JsonConvert.DeserializeObject<EditarViewModel>(response.Content!);
+                return View(editarViewModel);
+            }
+
+            return View(nameof(Index));
+        }
 
 
-        //[HttpPut]
-        //public IActionResult Editar(Guid localId)
-        //{
-        //    var client = new RestClient(passeioApi);
-        //    var rest = $"api/local/editar";
-        //    var request = new RestRequest(rest, Method.Put);
-        //    var response = client.Execute(request);
-        //    if(response.IsSuccessful)
-        //    {
-        //        //var editarViewModel = JsonConvert.DeserializeObject<EditarViewModel>(response.Content);
-        //        //return View(editarViewModel);
-        //    }
+        [HttpPost]
+        public IActionResult Editar(EditarViewModel editarViewModel)
+        {
+            var editarLocalDto = new EditarLocalDto
+            {
+                Id = editarViewModel.Id,
+                Titulo = editarViewModel.Titulo,
+                Descricao = editarViewModel.Descricao,
+                Localizacao = editarViewModel.Localizacao,
+                Imagem = editarViewModel.Imagem,
+            };
 
-        //    return View();
-        //}
+            var client = new RestClient(passeioApi);
+            var rest = $"api/local/editar";
+            var request = new RestRequest(rest, Method.Put);
+            request.AddBody(editarLocalDto);
+            var response = client.Execute(request);
+            if (response.IsSuccessful)
+            {
+                _toastNotification.AddSuccessToastMessage("Suas alterações foram salvas com sucesso!");
+                return RedirectToAction(nameof(Index));
+            }
+
+            _toastNotification.AddErrorToastMessage(response.Content);
+            return View(editarViewModel);
+        }
 
         public IActionResult Deletar(Guid localId)
         {
@@ -92,6 +115,7 @@ namespace Passeio.web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            _toastNotification.AddErrorToastMessage(response.Content);
             return RedirectToAction(nameof(Index));
         }
     }

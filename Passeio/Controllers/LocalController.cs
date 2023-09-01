@@ -73,15 +73,36 @@ namespace Passeio.Controllers
             return Ok();
         }
 
-        [HttpPut("editar/{localId}")]
-        public IActionResult Editar(Guid localId, [FromBody] EditarLocalDto editarDto)
+        [HttpGet("buscarParaEdicao/{localId}")]
+        public IActionResult BuscarParaEdicao(Guid localId)
         {
-            var localParaEditar = _contexto.Locais.SingleOrDefault(x => x.Id == localId);
+            var local = _contexto.Locais.SingleOrDefault(x => x.Id == localId);
+            if(local is null)
+            {
+                return NotFound(new { error = "Local não encontrado" });
+            }
 
-            if(localParaEditar is null)
+            var localParaEdicao = new EditarLocalDto
+            {
+                Id = localId,
+                Titulo = local.Titulo,
+                Descricao = local.Descricao,
+                Localizacao = local.Localizacao,
+                Imagem = local.Imagem
+            };
+
+            return Ok(localParaEdicao);
+        }
+
+        [HttpPut("editar")]
+        public IActionResult Editar([FromBody] EditarLocalDto editarDto)
+        {
+            var localParaEditar = _contexto.Locais.SingleOrDefault(x => x.Id == editarDto.Id);
+
+            if(editarDto is null)
                 return NotFound(new { error = "Local não encontrado!" });
 
-            localParaEditar.Editar(editarDto.Titulo, editarDto.Descricao, editarDto.Localizacao, editarDto.Imagem);
+            localParaEditar!.Editar(editarDto.Titulo, editarDto.Descricao, editarDto.Localizacao, editarDto.Imagem);
 
             _contexto.SaveChanges();
 

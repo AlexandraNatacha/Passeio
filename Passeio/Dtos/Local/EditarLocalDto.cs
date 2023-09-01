@@ -4,6 +4,8 @@ namespace Passeio.Dtos.Local
 {
     public class EditarLocalDto
     {
+        public Guid Id { get; set; }
+
         [Required(ErrorMessage = "O título é obrigatório!")]
         public string Titulo { get; set; }
 
