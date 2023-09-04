@@ -5,6 +5,7 @@ using Passeio.Api.Enums;
 using Passeio.Contexto;
 using Passeio.Dtos.Local;
 using Passeio.Entidades;
+using Passeio.web.Dtos.Local;
 
 namespace Passeio.Controllers
 {
@@ -45,14 +46,24 @@ namespace Passeio.Controllers
             return Ok(locaisDto);
         }
 
-        [HttpGet("buscar/{id}")]
-        public IActionResult Buscar(Guid id)
+        [HttpGet("buscar/{localId}")]
+        public IActionResult Buscar(Guid localId)
         {
-            var lugar = _contexto.Locais.SingleOrDefault(x => x.Id == id);
+            var lugar = _contexto.Locais.SingleOrDefault(x => x.Id == localId);
             if(lugar is null)
                 return NotFound(new {erro = "Local não encontrado!" });
+            
+            var datalhesDoLocal = new DetalhesDto
+            {
+                Id = localId,
+                Titulo = lugar.Titulo,
+                Descricao = lugar.Descricao,
+                Localizacao = lugar.Localizacao,
+                Imagem = lugar.Imagem,
+                UsuarioCriador = lugar.UsuarioCriador
+            };
 
-            return Ok(lugar);
+            return Ok(datalhesDoLocal);
         }
 
         [HttpPost("criar")]

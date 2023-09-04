@@ -1,0 +1,55 @@
+﻿@using Passeio.web.Models.ViewModels;
+@model DetalhesViewModel
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<div class="card shadow-lg card-profile-top">
+    <div class="row card-body justify-content-between">
+        <h1 class="col-auto">@Model.Titulo</h1>
+    </div>
+</div>
+
+@if (Model != null)
+{
+
+    <div class="card mt-3">
+        <div class="row card-body">
+            <div class="col-lg-2 col-md-3 col-sm-12">
+                <h5 class="text-body">Imagem</h5>
+                <p>@Model.Imagem</p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-12">
+                <h5 class="text-body">Título</h5>
+                <p>@Model.Titulo</p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-12">
+                <h5 class="text-body">Descrição</h5>
+                <p>@Model.Descricao</p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-12">
+                <h5 class="text-body">Localização</h5>
+                <p>@Model.Localizacao</p>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-12">
+                <h5 class="text-body">Autor</h5>
+                <p>@Model.UsuarioCriador</p>
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <div class="card mt-3">
+        <div class="card-body">
+            <div class="alert alert-warning m-0 text-dark">
+                Ainda não tem locais cadastrados.
+            </div>
+        </div>
+    </div>
+}
+<div>
+    <a asp-action="Index">Voltar para lista de locais</a>
+</div>

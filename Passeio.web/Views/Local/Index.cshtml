@@ -46,12 +46,9 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownOpcoes">
                             <li><a class="dropdown-item" asp-controller="Local" asp-action="Editar" asp-route-localId="@local.Id"><i class="bi bi-pen"></i>Editar</a></li>
+                            <li><a class="dropdown-item" asp-controller="Local" asp-action="Detalhes" asp-route-localId="@local.Id"><i class="bi bi-card-text"></i>Detalhes</a></li>
                             <li><a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#ExcluirModal" style="cursor: pointer;"><i class="bi bi-trash"></i>Excluir</a></li>
-@*                            <li>
-                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ExcluirModal" style="width: 164px;">
-                                    <i class="bi bi-trash"></i>Excluir
-                                </button>
-                            </li>*@
+
                         </ul>
                     </div>
                 </div>
@@ -62,11 +59,11 @@
 }
 else
 {
-    <div class="card mt-3">
-        <div class="card-body">
-            <div class="alert alert-warning m-0 text-dark">
-                Ainda não tem locais cadastrados.
-            </div>
+<div class="card mt-3">
+    <div class="card-body">
+        <div class="alert alert-warning m-0 text-dark">
+            Ainda não tem locais cadastrados.
         </div>
     </div>
+</div>
 }

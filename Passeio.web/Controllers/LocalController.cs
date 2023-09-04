@@ -118,5 +118,21 @@ namespace Passeio.web.Controllers
             _toastNotification.AddErrorToastMessage(response.Content);
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Detalhes(Guid localId)
+        {
+            var client = new RestClient(passeioApi);
+            var rest = $"api/local/buscar/{localId}";
+            var request = new RestRequest(rest);
+            request.AddBody(localId);
+            var response = client.Execute(request);
+            if (response.IsSuccessful)
+            {
+                var detalhesViewModel = JsonConvert.DeserializeObject<DetalhesViewModel>(response.Content!);
+                return View(detalhesViewModel);
+            }
+            _toastNotification.AddErrorToastMessage(response.Content);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
