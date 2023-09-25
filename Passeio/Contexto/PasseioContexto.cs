@@ -15,7 +15,7 @@ namespace Passeio.Contexto
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Local>().Property(x => x.Imagem).HasColumnType("text");
             base.OnModelCreating(modelBuilder);
         }
     }

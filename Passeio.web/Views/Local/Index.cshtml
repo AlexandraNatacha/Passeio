@@ -21,7 +21,7 @@
             <div class="row card-body">
                 <div class="col-lg-2 col-md-3 col-sm-12">
                     <h5 class="text-body">Imagem</h5>
-                    <p>@local.Imagem</p>
+                    <img width="100" src="@local.Imagem"/>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-12">
                     <h5 class="text-body">Título</h5>
@@ -48,7 +48,6 @@
                             <li><a class="dropdown-item" asp-controller="Local" asp-action="Editar" asp-route-localId="@local.Id"><i class="bi bi-pen"></i>Editar</a></li>
                             <li><a class="dropdown-item" asp-controller="Local" asp-action="Detalhes" asp-route-localId="@local.Id"><i class="bi bi-card-text"></i>Detalhes</a></li>
                             <li><a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#ExcluirModal" style="cursor: pointer;"><i class="bi bi-trash"></i>Excluir</a></li>
-
                         </ul>
                     </div>
                 </div>

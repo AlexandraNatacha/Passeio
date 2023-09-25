@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Passeio.Migrations
+namespace Passeio.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class AdicionandoLocal : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,11 +18,12 @@ namespace Passeio.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Localização = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Imagem = table.Column<byte>(type: "tinyint", nullable: false),
+                    Localizacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Imagem = table.Column<string>(type: "text", nullable: false),
                     UsuarioCriador = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DataDeCriacao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DataDeAtualizacao = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DataDeAtualizacao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

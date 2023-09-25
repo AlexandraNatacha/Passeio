@@ -26,7 +26,7 @@ namespace Passeio.Controllers
                 .Where(x => x.Status == StatusDoLocal.Ativo)
                 .ToList();
 
-            if(!locais.Any())
+            if (!locais.Any())
                 return NotFound(new {error = "Ainda não há locais cadastrados"});
 
             var locaisDto = new List<ListarLocalDto>();

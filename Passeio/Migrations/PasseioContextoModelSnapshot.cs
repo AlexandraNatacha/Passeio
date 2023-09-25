@@ -8,7 +8,7 @@ using Passeio.Contexto;
 
 #nullable disable
 
-namespace Passeio.Migrations
+namespace Passeio.Api.Migrations
 {
     [DbContext(typeof(PasseioContexto))]
     partial class PasseioContextoModelSnapshot : ModelSnapshot
@@ -65,8 +65,9 @@ namespace Passeio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("Imagem")
-                        .HasColumnType("tinyint");
+                    b.Property<string>("Imagem")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Localizacao")
                         .IsRequired()

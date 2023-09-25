@@ -4,7 +4,7 @@ namespace Passeio.Entidades
 {
     public class Local
     {
-        public Local(string titulo, string descricao, string localizacao, byte imagem, string usuarioCriador)
+        public Local(string titulo, string descricao, string localizacao, string imagem, string usuarioCriador)
         {
             Titulo = titulo;
             Descricao = descricao;
@@ -20,14 +20,14 @@ namespace Passeio.Entidades
         public string Titulo { get; private set; }
         public string Descricao { get; private set; }
         public string Localizacao { get; private set; }
-        public Byte Imagem { get; private set; }
+        public string Imagem { get; private set; }
         public string UsuarioCriador { get; private set; }
         public List<Comentario> Comentarios { get; private set; }
         public DateTime DataDeCriacao { get; private set; }
         public DateTime DataDeAtualizacao { get; private set; }
         public StatusDoLocal Status { get; private set; }
 
-        public void Editar(string titulo, string descricao, string localizacao, Byte imagem )
+        public void Editar(string titulo, string descricao, string localizacao, string imagem )
         {
             Titulo = titulo;
             Descricao = descricao;

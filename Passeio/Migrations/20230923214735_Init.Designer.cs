@@ -9,11 +9,11 @@ using Passeio.Contexto;
 
 #nullable disable
 
-namespace Passeio.Migrations
+namespace Passeio.Api.Migrations
 {
     [DbContext(typeof(PasseioContexto))]
-    [Migration("20230818130759_AdicionandoLocal")]
-    partial class AdicionandoLocal
+    [Migration("20230923214735_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,12 +68,16 @@ namespace Passeio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("Imagem")
-                        .HasColumnType("tinyint");
+                    b.Property<string>("Imagem")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<string>("Localização")
+                    b.Property<string>("Localizacao")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("Titulo")
                         .IsRequired()

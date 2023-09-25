@@ -9,6 +9,6 @@ namespace Passeio.web.Models.ViewModels
         public string Descricao { get; set; }
         public string Localizacao { get; set; }
         public string UsuarioCriador { get; set; }
-        public Byte Imagem { get; set; }
+        public string Imagem { get; set; }
     }
 }

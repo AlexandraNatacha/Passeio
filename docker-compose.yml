@@ -25,11 +25,11 @@ services:
       - "1433:1433"
     networks:
       - backend
-    volumes:
+   # volumes:
       #- "/data/dbPasseio.mdf:/var/opt/mssql/data/dbPasseio.mdf"
       #- "/data/dbPasseio.ldf:/var/opt/mssql/data/dbPasseio.ldf"
       #- "C:\/Users\/02855130280\/source\/repos\/Passeio\/data:/var/opt/mssql/data"
-      - C:\/Users\/Alexandra Natacha\/source\/repos\/Passeio\/data:/var/opt/mssql/data"
+      #- C:\/Users\/Alexandra Natacha\/source\/repos\/Passeio\/data:/var/opt/mssql/data"
       #- "/data:/var/opt/mssql/data"
 
 networks:

@@ -43,7 +43,8 @@ namespace Passeio.web.Controllers
                 Titulo = localViewModel.Titulo,
                 Descricao = localViewModel.Descricao,
                 Localizacao = localViewModel.Localizacao,
-                UsuarioCriador = localViewModel.UsuarioCriador
+                UsuarioCriador = localViewModel.UsuarioCriador,
+                Imagem = localViewModel.Imagem
             };
             var client = new RestClient(passeioApi);
             var rest = $"api/local/criar";
