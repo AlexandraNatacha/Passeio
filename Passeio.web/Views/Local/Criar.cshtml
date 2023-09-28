@@ -31,18 +31,18 @@
                 <input asp-for="UsuarioCriador" class="form-control" />
                 <span asp-validation-for="UsuarioCriador" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <!--Imagem-->
+            <div class="form-group d-none">
                 <label asp-for="Imagem" class="control-label"></label>
                 <input asp-for="Imagem" class="form-control" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
             </div>
-
             <div class="panel panel-default">
                 <div class="panel-heading">Camera</div>
                 <div class="panel-body">
                     <div id="mac_camera"></div>
                     <!-- botão para tirar foto -->
-                    <button type="button" class="btn btn-success" value="Capturar Imagem" onClick="captura_imagem()"/>
+                    <button type="button" class="btn btn-secondary" disabled" value="Capturar Imagem" onClick="captura_imagem()"><i class="bi bi-camera"></i> Capturar</button>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -53,6 +53,7 @@
                 <br />
                 <br />
             </div>
+            <!--Termina Imagem-->
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -70,30 +71,5 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script src="~/lib/webcamjs/webcam.min.js"></script>
-
-    <!-- Configura e anexa a camera -->
-    <script language="JavaScript">
-        Webcam.set({
-            width: 400,
-            height: 300,
-            image_format: 'jpeg',
-            jpeg_quality: 90
-        });
-        Webcam.attach('#mac_camera');
-    </script>
-    <!-- Codigo para tirar a foto e exibir localmente -->
-    <script language="JavaScript">
-        function captura_imagem() {
-            // tira a foto e obtem os dados da imagem
-            Webcam.snap(function (data_uri) {
-                // exibe o resultado na pagina
-                document.getElementById('resultado').innerHTML =
-                    '<img src="' + data_uri + '"/>';
-                //Webcam.upload(data_uri, '/Camera/CapturaImagemPost', function (code, text) {
-                //    alert('Imagem Capturada');
-                //});
-                document.getElementById('Imagem').value = data_uri;
-            });
-        }
-    </script>
+    <script src="~/js/camera.js"></script>
 }
