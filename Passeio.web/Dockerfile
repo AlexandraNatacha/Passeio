@@ -11,7 +11,7 @@ WORKDIR /source/Passeio.web
 
 # COMPILA O CODIGO PARA IMPLANTAO EM UM SISTEMA DE HOSPEDAGEM
 RUN dotnet publish Passeio.sln -c Release -o out
-#RUN dotnet publish Passeio.web.csproj -c release -o /app
+RUN dotnet publish Passeio.web.csproj -c release -o /app
 
 # SETA O DIRETORIO BASE PARA ENTRYPOINT
 WORKDIR /app
